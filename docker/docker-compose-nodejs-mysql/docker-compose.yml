@@ -5,18 +5,16 @@ services:
       context: .
       dockerfile: Dockerfile
     ports:
-      - 3000:3000
+      - 8090:8090
     depends_on:
       mysqldb:
         condition: service_healthy
     environment:
-      - DB_HOST=mysqldb
-      - DB_PORT=3306
-      - DB_NAME=${MYSQL_DATABASE}
-      - DB_USERNAME=root
-      - DB_PASSWORD=${MYSQL_PASSWORD}
+      - SPRING_DATASOURCE_URL=jdbc:mysql://mysqldb:3306/${MYSQL_DATABASE}
+      - SPRING_DATASOURCE_USERNAME=root
+      - SPRING_DATASOURCE_PASSWORD=${MYSQL_PASSWORD}
     networks:
-      - nodejs-mysql-network
+      - springboot-mysql-network
   mysqldb:
     image: mysql:8.0.33
     ports:
@@ -27,7 +25,7 @@ services:
     volumes:
       - mysql-data:/var/lib/mysql
     networks:
-      - nodejs-mysql-network
+      - springboot-mysql-network
     healthcheck:
       test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
       retries: 10
@@ -36,5 +34,5 @@ services:
 volumes:
   mysql-data:
 networks:
-  nodejs-mysql-network:
-    name: nodejs-mysql-network
+  springboot-mysql-network:
+    name: springboot-mysql-network

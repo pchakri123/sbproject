@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/aws/springboot-migration-elasticbeanstalk/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/docker/docker-compose-springboot-mysql/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/kubernetes/spring-microservice-deployment-gitlab-helm/ecommerce-api-gateway/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/kubernetes/spring-microservice-deployment-gitlab-helm/ecommerce-config-server/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/kubernetes/spring-microservice-deployment-gitlab-helm/ecommerce-order-service/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/kubernetes/spring-microservice-deployment-gitlab-helm/ecommerce-product-service/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/kubernetes/spring-microservice-deployment-gitlab-helm/ecommerce-sale-service/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/kubernetes/spring-microservice-deployment-gitlab-helm/ecommerce-service-registry/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/kubernetes/spring-microservice-deployment-gitlab-helm/ecommerce-user-service/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/kubernetes/springboot-docker-kubernetes-setup/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/spring-boot/spring-boot-actuator/src/main/java" charset="UTF-8" />
+  </component>
+</project>

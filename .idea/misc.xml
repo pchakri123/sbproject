@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ExternalStorageConfigurationManager" enabled="true" />
+  <component name="MavenProjectsManager">
+    <option name="originalFiles">
+      <list>
+        <option value="$PROJECT_DIR$/aws/springboot-migration-elasticbeanstalk/pom.xml" />
+        <option value="$PROJECT_DIR$/java/maven-for-beginners/pom.xml" />
+        <option value="$PROJECT_DIR$/docker/docker-compose-springboot-mysql/pom.xml" />
+        <option value="$PROJECT_DIR$/kubernetes/springboot-docker-kubernetes-setup/pom.xml" />
+        <option value="$PROJECT_DIR$/kubernetes/spring-microservice-deployment-gitlab-helm/ecommerce-api-gateway/pom.xml" />
+        <option value="$PROJECT_DIR$/kubernetes/spring-microservice-deployment-gitlab-helm/ecommerce-sale-service/pom.xml" />
+        <option value="$PROJECT_DIR$/kubernetes/spring-microservice-deployment-gitlab-helm/ecommerce-user-service/pom.xml" />
+        <option value="$PROJECT_DIR$/kubernetes/spring-microservice-deployment-gitlab-helm/ecommerce-config-server/pom.xml" />
+        <option value="$PROJECT_DIR$/kubernetes/spring-microservice-deployment-gitlab-helm/ecommerce-order-service/pom.xml" />
+        <option value="$PROJECT_DIR$/kubernetes/spring-microservice-deployment-gitlab-helm/ecommerce-product-service/pom.xml" />
+        <option value="$PROJECT_DIR$/kubernetes/spring-microservice-deployment-gitlab-helm/ecommerce-service-registry/pom.xml" />
+        <option value="$PROJECT_DIR$/spring-boot/spring-boot-actuator/pom.xml" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_17" default="true" project-jdk-name="17" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/out" />
+  </component>
+</project>
