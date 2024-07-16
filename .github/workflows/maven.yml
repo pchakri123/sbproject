@@ -28,7 +28,8 @@ jobs:
             java-version: '17'
             cache: maven
     - name: Build with Maven
-      run: mvn -f C:\Users\lenovo\community\spring-boot\spring-boot-actuator clean install
+      run: mvn -f C:\Users\lenovo\community\spring-boot\spring-boot-actuator\pom.xml clean install
+
 
     # Optional: Uploads the full dependency graph to GitHub to improve the quality of Dependabot alerts this repository can receive
     - name: Update dependency graph
