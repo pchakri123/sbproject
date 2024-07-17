@@ -41,7 +41,7 @@ jobs:
               password: ${{ secrets.DOCKER_PASSWORD }}
 
     - name: Build and push Docker image
-      uses: mr-smithers-excellent/docker-build-push@v5
+      uses: mr-smithers-excellent/docker-build-push@v6
       with:
               registry: docker.io
               image: kanishka0115/springboot-image-new
