@@ -1,7 +1,0 @@
-# General
-.vscode
-
-# bin, lib
-.bin*
-#######
-.lib*

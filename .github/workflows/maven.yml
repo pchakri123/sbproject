@@ -46,7 +46,7 @@ jobs:
               registry: docker.io
               image: kanishka0115/springboot-image-new
               tags: latest
-              dockerfile: sbproject/docker/docker-compose-springboot-mysql/Dockerfile
+              dockerfile: Dockerfile
 
 
 

@@ -1,157 +1,221 @@
-<a href="https://numericaideas.com" target="blank"><img align="center" src="ni-github-banner.png" alt="numericaideas" /></a>
+# Dockerize Spring Boot and MySQL with Docker Compose&nbsp;[![Hits](https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2Fnumerica-ideas%2Fcommunity%2Ftree%2Fmaster%2Fdocker%2Fdocker-compose-springboot-mysql&count_bg=%2379C83D&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=hits&edge_flat=false)](https://numericaideas.com/blog/docker-compose-springboot-mysql)
 
-<h3 align="center">TECH TOPICS TO SHARPEN YOUR CLOUD AND SOFTWARE ARCHITECTURE SKILLS</h3>
-<p align="center">No hour of life is wasted that is spent gaining invaluable skills</p>
-<p align="center">"DISCOVER, LEARN, BUILD, & SHARE" 🚀</p>
-<p align="center"><a href="https://numericaideas.com/blog/">Blog</a> · <a href="https://www.youtube.com/@numericaideas/channels?sub_confirmation=1">YouTube</a> · <a href="https://discord.numericaideas.com">Discord</a> · <a href="https://github.com/numerica-ideas/community#tech-projects">Projects</a></p>
-<br/>
+**This article was originally written by "Orleando Dassi" on the blog**: https://numericaideas.com/blog/docker-compose-springboot-mysql
 
-# Ni Community Activities&nbsp;[![Hits](https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2Fnumerica-ideas%2Fcommunity&count_bg=%2379C83D&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=hits&edge_flat=false)](https://numericaideas.com)
+## Introduction
+Docker has revolutionized application deployment by enabling developers to package applications and their dependencies into portable containers. In this comprehensive guide, we'll explore how to dockerize a **Spring Boot** application with **MySQL**, leveraging the power of **Docker** and **Docker Compose**. By containerizing your Spring Boot application, you can achieve easy deployment, improved portability, scalability, and version control.
 
-[![NiPresentation](./ni-presentation-play.gif)](https://youtu.be/6bdCyAZCUTg)
+[![FeaturedImage](./images/Dockerize-Spring-Boot-Application-with-MySQL.png)](https://numericaideas.com/blog/docker-compose-springboot-mysql)
 
-[NumericaIdeas](https://numericaideas.com) is a technical community that creates opportunities for IT professionals, where you’ll secure your dream job, and indeed the group through which you can develop your hard and soft skills at your own pace.
+> The **YouTube Channels** in both English (En) and French (Fr) are now accessible, feel free to subscribe by clicking [here](https://www.youtube.com/@numericaideas/channels?sub_confirmation=1).
 
-Does this speak to you? If **YES**, feel free to subscribe to our [YouTube Channel](https://www.youtube.com/@numericaideas/channels?sub_confirmation=1), register to the [Newsletter](https://numericaideas.com/news), and join our [Discord Server](https://discord.numericaideas.com) to be kept posted of new content and activities.
+## What is Docker?
+**Docker** is an open-source platform that simplifies application deployment by packaging applications and their dependencies into containers. Containers provide a lightweight, isolated environment that can run consistently across different environments which greatly improves the development and deployment experiences.
 
-## Recent Content
-<table><tr><td valign="top" width="50%">
+## Why Dockerize a Spring Boot Application with MySQL?
+Dockerizing a Spring Boot application with MySQL offers several advantages:
+- **Portability**: Docker containers can be deployed on any machine running Docker, eliminating environment-specific issues.
+- **Isolation**: Containers provide an isolated environment, ensuring consistent and reliable application execution.
+- **Scalability**: Docker containers can be easily scaled horizontally to handle increased demand.
+- **Versioning**: Docker images can be versioned, enabling easy management and rollback to previous application versions.
 
-### <a href="https://www.youtube.com/@numericaideas/channels?sub_confirmation=1"><img src="https://raw.githubusercontent.com/rahuldkjain/github-profile-readme-generator/master/src/images/icons/Social/youtube.svg" title="NumericaIdeas YouTube Channel" alt="NumericaIdeas YouTube Channel" width="30"/> </a>   Latest YouTube Videos      
- 
-<!-- ENGLISH-YOUTUBE-VIDEOS:START -->
-- [Ngrok Tunneling: Open your Localhost to The World](https://www.youtube.com/watch?v=ZuRjFGtIrJk)
-- [Types of Cloud Computing](https://www.youtube.com/watch?v=jMs1UjOASsA)
-- [An Introduction to Strapi Headless CMS](https://www.youtube.com/watch?v=84bRnaJ9QWQ)
-- [Tech Career: Should You Specialize Sooner or Later?](https://www.youtube.com/watch?v=tADeuqlCylI)
-- [The 5-Step Tech Jobs Application Framework to Apply in 2024](https://www.youtube.com/watch?v=jU_8xL9ywfA)
-<!-- ENGLISH-YOUTUBE-VIDEOS:END -->
+## Prerequisites
+To follow this guide, ensure you have the following prerequisites:
+- Docker installed on your machine, [this guide](https://docs.docker.com/get-docker/) could help.
+- Java Development Kit (JDK) 17 installed, recent versions could work.
+- Maven or Gradle build tool installed.
 
-----------------
+## Create a Spring Boot Application
+Before proceeding, let's create a basic Spring Boot App with the latest stable release at the time of writing, which is version **3.1.2**.
 
-<!-- FRENCH-YOUTUBE-VIDEOS:START -->
-- [Entretien Technique #02 : Développeur Spring Boot Junior](https://www.youtube.com/watch?v=V0NHhdOOvY0)
-- [Entretien Technique #01: Développeur Frontend HTML + CSS](https://www.youtube.com/watch?v=ILGVVFNeRcY)
-- [Meetup 02: Devenez un freelance de 1ère classe &lpar;top 3%&rpar; avec Toptal - Salomon Nghukam](https://www.youtube.com/watch?v=AmhMAQTxcGg)
-- [Meetup 01: Multi-modules à la Rescousse des Microservices - Valdèse Kamdem](https://www.youtube.com/watch?v=e_LJvcikUCk)
-<!-- FRENCH-YOUTUBE-VIDEOS:END -->
- 
-</td><td valign="top" width="50%">
+It involves accessing the initializer service at [https://start.spring.io](https://start.spring.io/), providing some basic details in regard to the App, selecting the required dependencies then hitting on the **GENERATE** button to have the basic structure of the project as follows:
 
-### <a href="https://numericaideas.com/blog"><img src="https://avatars.githubusercontent.com/u/84835921?s=48&v=4" title="NumericaIdeas" alt="NumericaIdeas" width="25"/></a>   Latest Articles on n-i.cm     
-<!-- TECH-POSTS-LIST:START -->
-- [Design Pattern Observer](https://numericaideas.com/blog/design-pattern-observer/)
-- [The Surprisingly Simple Way to Build Your Own Local “ChatGPT”](https://numericaideas.com/blog/build-your-own-chatgpt/)
-- [What is Spring Cloud?](https://numericaideas.com/blog/what-is-spring-cloud/)
-- [Design Pattern Strategy](https://numericaideas.com/blog/design-pattern-strategy/)
-- [How To Design REST APIs: A Comprehensive Guide](https://numericaideas.com/blog/how-to-design-rest-apis-a-comprehensive-guide/)
-- [How To Build Python Lambda Functions Using Serverless Framework](https://numericaideas.com/blog/how-to-build-python-lambda-functions-using-serverless-framework/)
-- [Solid Principles in Spring Boot Applications](https://numericaideas.com/blog/solid-principles-in-spring-boot/)
-- [Design Patterns](https://numericaideas.com/blog/design-patterns/)
-- [NUMIES 2023: NUMERICAIDEAS’S TOP CONTRIBUTORS AWARDS](https://numericaideas.com/blog/numies-2023/)
-- [What is Salesforce?](https://numericaideas.com/blog/what-is-salesforce/)
-<!-- TECH-POSTS-LIST:END -->
+![spring-boot-initializer](./images/spring-boot-initializer.png)
 
-</td></tr></table>
+You can quickly determine the following dependencies that come packaged in the **Maven** project:
+- **Spring Data JPA**: Persist data in SQL stores with Java Persistence API using Spring Data and Hibernate.
+- **Spring Web**: Build web, including RESTful, applications using Spring MVC. Uses Apache Tomcat as the default embedded container.
+- **MySQL Driver**: MySQL JDBC driver.
 
-**More tech content is available on [the blog](https://numericaideas.com/blog/) and on [YouTube](https://www.youtube.com/@numericaideas/channels?sub_confirmation=1).**
+Open the generated project in your favorite IDE or editor (I'm mainly using IntelliJ IDEA and VsCode), from there you can tweak it a bit to have some entities, controllers, and business logic.
 
-## 💡 Newsletter
-<!-- NI-NEWS-LIST:START -->
-- [Monthly Recap #11](https://numericaideas.com/news/monthly-recap-11/)
-- [Monthly Recap #10](https://numericaideas.com/news/monthly-recap-10/)
-- [Monthly Recap #9](https://numericaideas.com/news/monthly-recap-9/)
-- [Monthly Recap #8](https://numericaideas.com/news/monthly-recap-8/)
-- [Monthly Recap #7](https://numericaideas.com/news/monthly-recap-7/)
-<!-- NI-NEWS-LIST:END -->
+Hosted on GitHub, here's the [source code](https://github.com/numerica-ideas/community/tree/master/docker/docker-compose-springboot-mysql) of the Spring Boot application that we'll be using to set up Docker along with a MySQL database.
 
-Subscribe to the monthly activities newsletter at: [https://numericaideas.com/news](https://numericaideas.com/news) ✅
+The **application.properties** file holds some App configurations, it's not uncommon to see sensitive credentials in it, here's its content:
 
-## 👥 Social Media
-Multilingual (English & Français) presence on social media with the following accounts :eight_spoked_asterisk:
-- <img align="center" src="https://raw.githubusercontent.com/rahuldkjain/github-profile-readme-generator/master/src/images/icons/Social/twitter.svg" alt="gautamkrishnar" height="20" width="20" /> Twitter  : [EN](https://twitter.com/numericaideas) | [FR](https://twitter.com/NumericaIdeasFr)
-- <img align="center" src="https://raw.githubusercontent.com/rahuldkjain/github-profile-readme-generator/master/src/images/icons/Social/facebook.svg" alt="gautamkrishnar" height="20" width="20" /> Facebook : [EN](https://facebook.com/numericaideas) | [FR](https://facebook.com/NumericaIdeasFr)
-- <img align="center" src="https://raw.githubusercontent.com/rahuldkjain/github-profile-readme-generator/master/src/images/icons/Social/linked-in-alt.svg" alt="gautamkrishnar" height="20" width="20" /> LinkedIn : [EN](https://www.linkedin.com/company/numericaideas) | [FR](https://www.linkedin.com/company/numericaideas-fr)
-- <img align="center" src="https://raw.githubusercontent.com/rahuldkjain/github-profile-readme-generator/master/src/images/icons/Social/discord.svg" alt="gautamkrishnar" height="20" width="20" /> [Discord (EN | FR)](https://discord.numericaideas.com)
-- <img align="center" src="https://raw.githubusercontent.com/rahuldkjain/github-profile-readme-generator/master/src/images/icons/Social/youtube.svg" alt="gautamkrishnar" height="20" width="20" /> [YouTube (EN | FR)](https://www.youtube.com/@numericaideas/channels?sub_confirmation=1)
+```
+# Server port
+server.port=8090
 
-## Contribute
-There are a lot of **activities** that you can contribute to within the community, the idea is to help others grow while sharpening your hard and soft skills at the same time:
-- Publicly shared [TODO list](https://github.com/numerica-ideas/community/issues).
-- Become an **author** and be featured in the [Blog](https://numericaideas.com/blog/).
-- **Speak** at organized [Meetups](https://github.com/numerica-ideas/meetups) events.
-- Be part of [Workshops](https://discord.numericaideas.com) to **host or attend** tech topics discussions.
-- Do pre-recorded **videos** uploaded to our [YouTube (English & Français)](https://www.youtube.com/@numericaideas/channels?sub_confirmation=1) channels.
-- [Pair Interviews](https://docs.google.com/forms/d/e/1FAIpQLSfapW9TSe2RR43QF65MRlJjXaQ3uFC0RssvtWforWLZXF4zRg/viewform) for Software Jobs: be the **interviewee or interviewer** for technical assessments.
-- **Sharing** our content (articles and videos) on social media to get us noticed.
-- **Re-using** our content by crediting us.
-- Be **active** in the [Discord](https://discord.numericaideas.com) community.
-- **Committing** to our [tech projects](https://github.com/numerica-ideas/community#tech-projects).
+# Datasource connection
+spring.datasource.platform=mysql
+spring.datasource.initialization-mode=always
+spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.MySQLDialect
 
-🔔 Please note that any contribution to our community will be considered voluntary and free. Any content (article, video, and post) shared on our social media channels will not be compensated, unless mentioned. If you do not wish to have your content shared, please refrain from contributing.
+# Hibernate
+spring.jpa.hibernate.ddl-auto=update
+spring.jpa.hibernate.show-sql=true
 
-Your contributions are **precious** and some are [awarded](https://github.com/numerica-ideas/community#numies) at the end of each year, **Thank you for making NumericaIdeas shine** ⚡️
+# Logging
+logging.level.org.springframework=ERROR
+logging.level.com.numericaideas=DEBUG
+logging.level.org.hibernate.SQL=DEBUG
+logging.level.org.hibernate.type.descriptor.sql.BasicBinder=TRACE
+```
 
-**Note**: Feel free to **suggest** new ideas/enhancement to work on by [creating an issue](https://github.com/numerica-ideas/community/issues) :bulb:
+Let's build the App to make sure it compiles as expected, the following command must be run from the project root folder:
 
-## Tech Projects, Tutorials, and Workshops
-The articles, workshops, and other events **projects** are centralized in this repository:
+```
+./mvnw clean install -DskipTests
+```
 
-### Categories
-- [AI](./ai)
-- [Algorithms](./algorithms)
-- [Architecture](./architecture)
-- [Articles](./articles)
-- [Backend](./backend)
-- [Best Practices](./best-practices)
-- [Career](./career)
-- [Cheat Sheets](./cheatsheets)
-- [Cloud](./cloud)
-- [CMS](./cms)
-- [CRM](./crm)
-- [Community](./community)
-- [Data Engineering](./data-engineering)
-- [Design (UI & UX)](./design)
-- [DevOps](./devops)
-- [Frontend](./frontend)
-- [Full Stack](./full-stack)
-- [Mobile](./mobile)
-- [Monitoring](./monitoring)
-- [Observability](./observability)
-- [Security](./security)
-- [Serverless](./serverless)
-- [Tech Interviews](./tech-interviews)
-- [Videos](./videos)
-- [Meetups](https://github.com/numerica-ideas/meetups)
+At the end of the execution, the **Maven** build output should look like this:
 
-### Stacks
-- [Android](./android)
-- [Angular](./angular)
-- [Amazon Web Services (AWS)](./aws)
-- [Microsoft Azure](./azure)
-- [Docker](./docker)
-- [Google Cloud Platform (GCP)](./gcp)
-- [Git](./git)
-- [GitHub Actions](./github-actions)
-- [GitLab CI/CD](./gitlab-ci-cd)
-- [iOS](./ios)
-- [Java](./java)
-- [JavaScript](./javascript)
-- [Kubernetes](./kubernetes)
-- [NodeJS](./nodejs)
-- [Python](./python)
-- [ReactJS](./reactjs)
-- [RxJS](./rxjs)
-- [Salesforce](./salesforce)
-- [Spring Boot](./spring-boot)
-- [Terraform](./terraform)
-- [Web Development](./web)
+![maven-build](./images/maven-build.png)
 
-[More topics](https://numericaideas.com/blog/)
+Other **Bash** scripts are available within the project for convenience:
+- `build.sh`: to build the project.
+- `up.sh`: to start the project using **Docker Compose**.
+- `down.sh`: to shut everything down.
 
-## Numies
-**Numies** is the NumericaIdeas Awards conducted each year-end to celebrate a few **top contributors** who worked toward the vision of our professional network while impacting more people and differentiating themselves by their commitments and presence. There are many categories available and some prizes are given away 🎉
+For our demo, the port in use is **8090** and we have implemented the CRUD operations for the **User** entity as well as a **Ping** endpoint, we won't go deeper on that since it's out of scope and you can follow the next sections of this guide with an existing Spring Boot (Maven) project too.
 
-The [contribution opportunities](https://numericaideas.com/#activities) are available, the **Top Contributors** winners are now public on the [Award](https://numericaideas.com/numies/) page.
+## Create Docker Image for Spring Boot Application
+The `Dockerfile` should be provided to build an image of the Spring Boot Application, it contains the following lines:
 
-By [NumericaIdeas Network](https://numericaideas.com) :fire:
+```
+# Use a base image with Java 17
+FROM openjdk:17
+
+# Copy the JAR package into the image
+ARG JAR_FILE=target/*.jar
+COPY ${JAR_FILE} app.jar
+
+# Expose the application port
+EXPOSE 8090
+
+# Run the App
+ENTRYPOINT ["java", "-jar", "/app.jar"]
+```
+
+It's straightforward, the `Dockerfile` uses an image based on **Java 17**, it copies into the image the executable **JAR** file that resulted from the build in the previous step, exposes the **port** the App is running on, then provides the **entry point** which is the bash command to run at the end to start the container.
+
+By building your image with the command `docker build .`, a successful output should be similar to the next image:
+
+![build-app-docker-image](./images/build-app-docker-image.png)
+
+By this stage, we have the App image and since we'll use an official MySQL Docker image, we can manually spin up both components and link them together by using the database credentials to run the App, but to make the process easier we'll link their deployments together by using **Docker Compose** in the next section.
+
+## Docker Compose Spring Boot and MySQL
+Docker Compose simplifies the orchestration of multi-container applications. Create a file named `docker-compose.yml` in your project directory and add the following configuration:
+
+```yaml
+version: '3.7'
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - 8090:8090
+    depends_on:
+      mysqldb:
+        condition: service_healthy
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:mysql://mysqldb:3306/${MYSQL_DATABASE}
+      - SPRING_DATASOURCE_USERNAME=root
+      - SPRING_DATASOURCE_PASSWORD=${MYSQL_PASSWORD}
+    networks:
+      - springboot-mysql-network
+  mysqldb:
+    image: mysql:8.0.33
+    ports:
+      - 3306:3306
+    environment:
+      - MYSQL_DATABASE=${MYSQL_DATABASE}
+      - MYSQL_ROOT_PASSWORD=${MYSQL_PASSWORD}
+    volumes:
+      - mysql-data:/var/lib/mysql
+    networks:
+      - springboot-mysql-network
+    healthcheck:
+      test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
+      retries: 10
+      interval: 3s
+      timeout: 30s
+volumes:
+  mysql-data:
+networks:
+  springboot-mysql-network:
+    name: springboot-mysql-network
+```
+
+This Docker Compose configuration defines two services: `app` for the **Spring Boot Application** and `mysqldb` for the **MySQL database**. The `app` service builds the image based on the [Dockerfile](./Dockerfile) in the project's root directory. The `mysqldb` service uses the official **MySQL** image and sets the environment variables for the database configuration. The `depends_on` attribute ensures that the Spring Boot application starts after the MySQL database in order to guarantee dependency ordering. Finally, the `healthcheck` makes sure the MySQL service is ready to accept connections before running the App.
+
+For the App to connect itself to the MySQL database, as an enhanced security measure, we provided the database credentials as environment variables via the services' environment attributes so these are textually hidden from the project source code:
+- **MYSQL_DATABASE**: The database name.
+- **MYSQL_PASSWORD**: The database root's password, we use the root user account for simplicity only.
+
+The environment attributes present in the **app** service are provided as environment variables to the App container at run time, we are talking about:
+- SPRING_DATASOURCE_URL
+- SPRING_DATASOURCE_USERNAME
+- SPRING_DATASOURCE_PASSWORD
+
+Spring Boot automatically assigns these variables to the related **application.properties** configurations listed below:
+- spring.datasource.url
+- spring.datasource.username
+- spring.datasource.password
+
+Meaning we don't have to provide these manually into the **application.properties** file, [read more here](https://docs.spring.io/spring-cloud-skipper/docs/1.0.0.BUILD-SNAPSHOT/reference/html/skipper-database-configuration.html).
+
+## Run the Dockerized Application
+To run the App via **Docker Compose**, open a terminal, navigate to the project's root directory, and execute the following command in which we provide the **environment variables** directly:
+
+```bash
+MYSQL_DATABASE=mydatabase MYSQL_PASSWORD=rootpassword docker-compose up
+```
+
+In case you would like to provide the environment variables from a hidden `.env` file, feel free to create it from the `.env.sample` file and put it close to the `docker-compose.yml` within the project.
+
+This being done, the command to run will change a bit to the following:
+
+```bash
+docker-compose up
+```
+
+Docker Compose will build the Spring Boot and MySQL images, create the containers, and start them. You'll see logs from both the application and the database. To stop the containers, press Ctrl+C.
+
+Using **Docker Desktop** enables you to view a nice summary of your Docker state in which we can see our running containers as illustrated below:
+
+![running-containers](./images/docker-desktop-running-containers.png)
+
+The complete source code of the project is available on [GitHub](https://github.com/numerica-ideas/community/tree/master/docker/docker-compose-springboot-mysql).
+
+Open POSTMAN and **create** a POST request to the URL `localhost:8090/api/users` with a random user object to be persisted in the DB:
+
+![create-user](./images/test-api-create-user.png)
+
+Let's **list all users** which includes the one we just created:
+
+![list-users](./images/test-api-list-users.png)
+
+A **ping** endpoint is also available:
+
+![ping](./images/test-api-ping.png)
+
+If you are interested in related content, take a look at the following which explains how to [Quickly Dockerizing NodeJS Application using docker init command](https://numericaideas.com/blog/quickly-dockerizing-nodejs) effortlessly:
+
+[![QuicklyDockerizingNodeJSApplication](../../docker/quickly-dockerizing-nodejs/images/quickly-dockerizing-nodejs.png)](https://numericaideas.com/blog/quickly-dockerizing-nodejs)
+
+———————
+
+We have just started our journey to build a network of professionals to grow even more our free knowledge-sharing community that’ll give you a chance to learn interesting things about topics like cloud computing, software development, and software architectures while keeping the door open to more opportunities.
+
+Does this speak to you? If **YES**, feel free to [Join our Discord Server](https://discord.numericaideas.com) to stay in touch with the community and be part of independently organized events.
+
+———————
+
+## Conclusion
+Dockerizing a Spring Boot application with MySQL using Docker and Docker Compose simplifies the deployment process, improves portability, and enables scalability. By following the steps outlined in this guide, you can package your Spring Boot application and MySQL database into separate containers and deploy them as a cohesive application stack. With Docker, you can achieve consistent application execution across different environments, easily scale your application, and simplify version control. Docker Compose streamlines the management of multi-container applications, allowing you to define, configure, and deploy complex systems effortlessly.
+
+Thanks for reading this article. Like, recommend, and share if you enjoyed it. Follow us on [Facebook](https://www.facebook.com/numericaideas), [Twitter](https://twitter.com/numericaideas), and [LinkedIn](https://www.linkedin.com/company/numericaideas) for more content.
