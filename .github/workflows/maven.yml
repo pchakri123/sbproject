@@ -44,7 +44,7 @@ jobs:
       uses: mr-smithers-excellent/docker-build-push@v5
       with:
               registry: docker.io
-              repository: kanishka0115/springboot-image-new
+              image: kanishka0115/springboot-image-new
               tags: latest
               dockerfile: sbproject/docker/docker-compose-springboot-mysql/Dockerfile
 
