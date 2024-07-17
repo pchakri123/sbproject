@@ -37,7 +37,7 @@ jobs:
         image: kanishka0115/springboot-image-new
         tags: latest
         registry: docker.io
-        dockerfile: "C:/Users/lenovo/sbproject/docker/docker-compose-springboot-mysql/Dockerfile"
+        dockerfile: sbproject/docker/docker-compose-springboot-mysql/Dockerfile
         username: ${{ secrets.DOCKER_USERNAME }}
         password: ${{ secrets.DOCKER_PASSWORD }}
 
