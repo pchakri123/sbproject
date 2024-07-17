@@ -10,7 +10,7 @@
 > The **YouTube Channels** in both English (En) and French (Fr) are now accessible, feel free to subscribe by clicking [here](https://www.youtube.com/@numericaideas/channels?sub_confirmation=1).
 
 ## Why use Bitrise?
-Using a CI/CD platform like Bitrise for your Android app development has many benefits:
+Using a CI/CD platform li ke Bitrise for your Android app development has many benefits:
 1. **Efficiency:** Bitrise automates many manual steps in the development, testing, and deployment process, saving you time and effort.
 2. **Faster Feedback:** With Bitrise, you get feedback on your app's performance and functionality much faster than manual testing, so you can address issues as they arise.
 3. **Consistency:** Bitrise ensures that all your builds are consistent, regardless of who runs them. This reduces the chances of introducing errors or inconsistencies in your app.
