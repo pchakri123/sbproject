@@ -31,15 +31,21 @@ jobs:
     - name: Build with Maven
       run: mvn -f "./spring-boot/spring-boot-actuator/pom.xml" clean install
 
-    - name: Build & push Docker image
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v2
+
+    - name: Log in to Docker Hub
+      uses: docker/login-action@v2
+      with:
+              username: ${{ secrets.DOCKER_USERNAME }}
+              password: ${{ secrets.DOCKER_PASSWORD }}
+
+    - name: Build and push Docker image
       uses: mr-smithers-excellent/docker-build-push@v5
       with:
-        image: kanishka0115/springboot-image-new
-        tags: latest
-        registry: docker.io
-        dockerfile: sbproject/docker/docker-compose-springboot-mysql/Docker-compose.yml
-        username: ${{ secrets.DOCKER_USERNAME }}
-        password: ${{ secrets.DOCKER_PASSWORD }}
+              image: docker.io/${{ secrets.DOCKER_USERNAME }}/springboot-image-new
+              tags: latest
+              dockerfile: sbproject/docker/docker-compose-springboot-mysql/Dockerfile
 
 
 
