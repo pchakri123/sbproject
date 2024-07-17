@@ -43,7 +43,8 @@ jobs:
     - name: Build and push Docker image
       uses: mr-smithers-excellent/docker-build-push@v5
       with:
-              image: docker.io/${{ secrets.DOCKER_USERNAME }}/springboot-image-new
+              registry: docker.io
+              repository: kanishka0115/springboot-image-new
               tags: latest
               dockerfile: sbproject/docker/docker-compose-springboot-mysql/Dockerfile
 
