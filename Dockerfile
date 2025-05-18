@@ -3,7 +3,7 @@ FROM openjdk:17
 
 # Copy the JAR package into the image
 ARG JAR_FILE=target/*.jar
-COPY ${JAR_FILE} app.jar
+COPY ./target /app/target
 
 # Expose the application port
 EXPOSE 8090
