@@ -1,0 +1,14 @@
+inputSet:
+  name: Build_pchakri123_sbproject_1747582860034-push-trigger-input-set
+  identifier: Build_pchakri123_sbproject_1747582860034pushtriggerinputset
+  orgIdentifier: WiproPOC
+  projectIdentifier: Chakri_P
+  pipeline:
+    identifier: Build_pchakri123_sbproject_1747582860034
+    properties:
+      ci:
+        codebase:
+          build:
+            type: branch
+            spec:
+              branch: <+trigger.branch>
